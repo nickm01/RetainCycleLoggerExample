@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="test_retain_cycle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yIC-Ze-vct">
+                                <rect key="frame" x="0.0" y="40" width="600" height="560"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Retain Cycle Logger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfC-uh-5tj">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTi-iW-EMw">
+                                        <rect key="frame" x="0.0" y="8" width="600" height="0.0"/>
+                                        <state key="normal" title="Refresh Log"/>
+                                        <connections>
+                                            <action selector="didTapRefresh:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DJm-ir-AFA"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" editable="NO" text="..." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoF-0C-yGP">
+                                        <rect key="frame" x="0.0" y="16" width="600" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbV-mb-VRe">
+                                        <rect key="frame" x="0.0" y="74" width="600" height="0.0"/>
+                                        <state key="normal" title="Add Basic A-B Retain"/>
+                                        <connections>
+                                            <action selector="didTapBasicRetain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5RA-KM-dpV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEz-Ps-UWi">
+                                        <rect key="frame" x="0.0" y="82" width="600" height="0.0"/>
+                                        <state key="normal" title="Add A and B but B doesn't reference A"/>
+                                        <connections>
+                                            <action selector="BDoesNotReferenceADidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SHz-3Z-t8k"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4t-dk-Ffu">
+                                        <rect key="frame" x="0.0" y="90" width="600" height="0.0"/>
+                                        <string key="text">Try the below Buttons in order to see how a retain cycle is created but then broker by a weak reference holding onto b and clearing it's reference to a</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kur-k2-kHH">
+                                        <rect key="frame" x="0.0" y="98" width="600" height="0.0"/>
+                                        <state key="normal" title="self.a = A()"/>
+                                        <connections>
+                                            <action selector="selfaADidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zpb-bH-xlt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuK-JP-RcT">
+                                        <rect key="frame" x="0.0" y="106" width="600" height="0.0"/>
+                                        <state key="normal" title="self.b = B()"/>
+                                        <connections>
+                                            <action selector="selfbBDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dnK-bx-thx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Za-Dd-p2q">
+                                        <rect key="frame" x="0.0" y="114" width="600" height="0.0"/>
+                                        <state key="normal" title="self.a.b = self.b"/>
+                                        <connections>
+                                            <action selector="selfabEqualSelfbDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z5r-d4-qAZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NM6-3y-hgg">
+                                        <rect key="frame" x="0.0" y="122" width="600" height="0.0"/>
+                                        <state key="normal" title="self.b.a = self.b"/>
+                                        <connections>
+                                            <action selector="selfbaEqualSelfaDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SKE-ha-WQR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kM-Jw-Crz">
+                                        <rect key="frame" x="0.0" y="130" width="600" height="0.0"/>
+                                        <state key="normal" title="self.a = nil"/>
+                                        <connections>
+                                            <action selector="selfaNilDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LF7-2u-sBV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaF-lN-aid">
+                                        <rect key="frame" x="0.0" y="138" width="600" height="0.0"/>
+                                        <state key="normal" title="self.b = nil"/>
+                                        <connections>
+                                            <action selector="selfbNilDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bav-Se-Pax"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74q-Jl-iIH">
+                                        <rect key="frame" x="0.0" y="146" width="600" height="0.0"/>
+                                        <state key="normal" title="self.holdOnToB.a = nil"/>
+                                        <connections>
+                                            <action selector="selfHoldOnToBAEqualToNilDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I7R-0P-ada"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5f-NL-auW">
+                                        <rect key="frame" x="0.0" y="154" width="600" height="406"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="PoF-0C-yGP" firstAttribute="width" secondItem="yIC-Ze-vct" secondAttribute="width" id="COj-zU-XT9"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yIC-Ze-vct" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8d7-AN-mAG"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yIC-Ze-vct" secondAttribute="bottom" id="Bd9-pb-anE"/>
+                            <constraint firstItem="yIC-Ze-vct" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Okr-Yo-hKd"/>
+                            <constraint firstItem="yIC-Ze-vct" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="40" id="prA-3P-Gus"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logTextView" destination="PoF-0C-yGP" id="S6E-pX-mby"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="491" y="342"/>
+        </scene>
+    </scenes>
+</document>
